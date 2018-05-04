@@ -1,30 +1,42 @@
 package com.twu.biblioteca;
 
-import org.junit.Before;
-import org.junit.Test;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
+import com.twu.biblioteca.command.ReadInput;
 
-import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.mock;
+import static com.twu.biblioteca.entity.ConstOfHint.*;
+
+import com.twu.biblioteca.validation.InputValidate;
+import com.twu.biblioteca.view.BibliotecaAppView;
 
 public class BibliotecaApp {
-    private BibliotecaApp bibliotecaApp;
-    private ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+    private BibliotecaAppView bibliotecaAppView = new BibliotecaAppView();
+    private ReadInput readInput;
 
-    @Before
-    public void before() {
-        System.setOut(new PrintStream(outStream));
+    public BibliotecaApp(ReadInput readInput) {
+        this.readInput = readInput;
     }
 
-    private String systemOut() {
-        return outStream.toString();
+
+    public void enter() {
+        bibliotecaAppView.showWelcome();
+        while (init()) {
+
+        }
     }
-
-    @Test
-    public void should_show_welcome_info() throws Exception {
-
+    private boolean init() {
+        bibliotecaAppView.showMainMenu();
+        switch (readInput.read()) {
+            case ONE:
+                return true;
+            case TWO:
+                return true;
+            case THREE:
+                return true;
+            case FOURE:
+                return false;
+            default:
+                bibliotecaAppView.showChoiceWrong();
+                return true;
+        }
     }
-
 }

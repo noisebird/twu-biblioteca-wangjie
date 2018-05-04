@@ -16,5 +16,17 @@ public class ConstOfHint {
     public static final String RETURN_BOOK_FAIL_HINT="That is not a valid book to return.";
 
     public static final String RETRUN_MAIN_MENU_HINT="Please input any character to return main menu!";
+    public static final String ZERO="0";
+    public static final String ONE="1";
+    public static final String TWO="2";
+    public static final String THREE="3";
+    public static final String FOURE="4";
+    public static final String FIVE="5";
+    public static final String SIX="6";
+    public static final String SEVEN="7";
+    public static final String EIGHT="8";
+    public static final String NINE="9";
+
+
 
 }
