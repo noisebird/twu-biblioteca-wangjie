@@ -5,6 +5,7 @@ import com.twu.biblioteca.command.ReadInput;
 import com.twu.biblioteca.entity.Book;
 import com.twu.biblioteca.view.BibliotecaAppView;
 
+import java.text.CollationElementIterator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -39,8 +40,32 @@ public class BookStore {
         readInput.read();
     }
 
-    public void borrowBook(ReadInput readInput){
-        BibliotecaAppView.showBorrowBookHint();
+    public void borrowBook(){
+        while(true){
+            BibliotecaAppView.showBorrowBookHint();
+            if(changeBookStatus(readInput.read())){
+                BibliotecaAppView.showBorrowBokkSuccessHint();
+                break;
+            }else{
+                BibliotecaAppView.showBorrowBookFailHint();
+            }
+        }
+    }
+    private boolean changeBookStatus(String input){
+         if(isInputValidate(input)){
+             list =list.stream().map(book -> {
+                 if(String.valueOf(book.getId()).equals(input)){
+                     book.setState(!book.getState());
+                 }
+                 return book;
+             }).collect(Collectors.toList());
+             return true;
+         }
+        return false;
+    }
+
+    private boolean isInputValidate(String input){
+        return list.stream().anyMatch(book->String.valueOf(book.getId()).equals(input)&&book.getState());
 
     }
 }

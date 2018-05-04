@@ -11,9 +11,11 @@ import com.twu.biblioteca.view.BibliotecaAppView;
 
 public class BibliotecaApp {
     private ReadInput readInput;
+    protected BookStore bookStore;
 
     public BibliotecaApp(ReadInput readInput) {
         this.readInput = readInput;
+        bookStore=new BookStore(readInput);
     }
 
 
@@ -27,10 +29,10 @@ public class BibliotecaApp {
         BibliotecaAppView.showMainMenu();
         switch (readInput.read()) {
             case ONE:
-                BookStore bookStore=new BookStore(readInput);
                 bookStore.showBookList();
                 return true;
             case TWO:
+                bookStore.borrowBook();
                 return true;
             case THREE:
                 return true;

@@ -39,6 +39,7 @@ public class BibliotecaAppTest {
 
     @Test
     public void should_show_welcome_and_menu_info() throws Exception {
+        when(readInput.read()).thenReturn("4").thenReturn(FOURE);
         bibliotecaApp.enter();
         assertTrue(systemOut().startsWith(WECLOME_HINT+"\n"+MAIN_MENU_HINT));
     }
@@ -69,5 +70,74 @@ public class BibliotecaAppTest {
         when(readInput.read()).thenReturn(ONE).thenReturn("a").thenReturn(FOURE);
         bibliotecaApp.enter();
         assertTrue(systemOut().endsWith(MAIN_MENU_HINT+"\n"+BYE_HINT+"\n"));
+    }
+    @Test
+    public void should_input_value_equals_2_is_validate() throws Exception {
+        when(readInput.read()).thenReturn("2").thenReturn("1001").thenReturn("4");
+        bibliotecaApp.enter();
+        System.out.println(systemOut());
+        assertTrue(systemOut().contains(BORROW_BOOK_HINT));
+    }
+
+    @Test
+    public void should_input_borrow_id_is_validate_then_return_the_correct_result() throws Exception {
+        when(readInput.read()).thenReturn("2").thenReturn("1001").thenReturn("4");
+        bibliotecaApp.enter();
+        assertTrue(systemOut().contains(BORROW_BOOK_SUCCESS_HINT));
+    }
+
+    @Test
+    public void should_input_borrow_id_is_validate_but_state_is_0_then_return_the_correct_result() throws Exception {
+        when(readInput.read()).thenReturn("2").thenReturn("1005").thenReturn("1001").thenReturn("4");
+        bibliotecaApp.enter();
+        assertTrue(systemOut().contains(BORROW_BOOK_FAIL_HINT));
+    }
+    @Test
+    public void should_input_borrow_id_false_at_first_but_correct_at_second() throws Exception {
+        when(readInput.read()).thenReturn("2").thenReturn("1005").thenReturn("1001").thenReturn("4");
+        bibliotecaApp.enter();
+        assertTrue(systemOut().contains(BORROW_BOOK_FAIL_HINT+"\n"+BORROW_BOOK_HINT));
+    }
+    @Test
+    public void should_borrow_book_successfully_then_booklist_will_update() throws Exception {
+        when(readInput.read()).thenReturn("2").thenReturn("1001").thenReturn("4");
+        bibliotecaApp.enter();
+        long count = bibliotecaApp.bookStore.getAviableBookList().stream().filter(book -> book.getState()).count();
+        assertTrue(3 == count);
+    }
+
+    @Test
+    public void should_input_value_equals_3_is_validate() throws Exception {
+        when(readInput.read()).thenReturn("3").thenReturn("1005").thenReturn("4");
+        bibliotecaApp.enter();
+        assertTrue(systemOut().contains(RETURN_BOOK_HINT));
+    }
+    @Test
+    public void should_input_return_id_is_validate_then_return_the_correct_result() throws Exception {
+        when(readInput.read()).thenReturn("3").thenReturn("1005").thenReturn("4");
+        bibliotecaApp.enter();
+        assertTrue(systemOut().contains(RETURN_BOOK_SUCCESS_HINT));
+    }
+
+    @Test
+    public void should_input_return_id_false_at_first_but_correct_at_second() throws Exception {
+        when(readInput.read()).thenReturn("3").thenReturn("1001").thenReturn("1005").thenReturn("4");
+        bibliotecaApp.enter();
+        assertTrue(systemOut().contains(RETURN_BOOK_FAIL_HINT+"\n"+RETURN_BOOK_HINT));
+    }
+
+    @Test
+    public void should_input_return_id_is_validate_but_state_is_1_then_return_the_correct_result() throws Exception {
+        when(readInput.read()).thenReturn("3").thenReturn("1006").thenReturn("1005").thenReturn("4");
+        bibliotecaApp.enter();
+        assertTrue(systemOut().contains(RETURN_BOOK_FAIL_HINT));
+    }
+
+    @Test
+    public void should_input_return_book_successfully_then_booklist_will_update() throws Exception {
+        when(readInput.read()).thenReturn("3").thenReturn("1005").thenReturn("4");
+        bibliotecaApp.enter();
+        long count = bibliotecaApp.bookStore.getAviableBookList().stream().filter(book -> book.getState()).count();
+        assertTrue(5 == count);
     }
 }

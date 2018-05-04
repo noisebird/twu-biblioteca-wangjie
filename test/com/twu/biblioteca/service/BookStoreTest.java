@@ -53,8 +53,4 @@ public class BookStoreTest {
         assertTrue(4== bookStore.getAviableBookList().size());
     }
 
-    @Test
-    public void should_borrow_book_will_occur_input_hint() throws Exception {
-
-    }
 }
