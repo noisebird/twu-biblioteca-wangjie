@@ -5,11 +5,11 @@ import com.twu.biblioteca.command.ReadInput;
 
 import static com.twu.biblioteca.entity.ConstOfHint.*;
 
+import com.twu.biblioteca.service.BookStore;
 import com.twu.biblioteca.validation.InputValidate;
 import com.twu.biblioteca.view.BibliotecaAppView;
 
 public class BibliotecaApp {
-    private BibliotecaAppView bibliotecaAppView = new BibliotecaAppView();
     private ReadInput readInput;
 
     public BibliotecaApp(ReadInput readInput) {
@@ -18,24 +18,27 @@ public class BibliotecaApp {
 
 
     public void enter() {
-        bibliotecaAppView.showWelcome();
+        BibliotecaAppView.showWelcome();
         while (init()) {
 
         }
     }
     private boolean init() {
-        bibliotecaAppView.showMainMenu();
+        BibliotecaAppView.showMainMenu();
         switch (readInput.read()) {
             case ONE:
+                BookStore bookStore=new BookStore(readInput);
+                bookStore.showBookList();
                 return true;
             case TWO:
                 return true;
             case THREE:
                 return true;
             case FOURE:
+                BibliotecaAppView.showByeHint();
                 return false;
             default:
-                bibliotecaAppView.showChoiceWrong();
+                BibliotecaAppView.showChoiceWrong();
                 return true;
         }
     }

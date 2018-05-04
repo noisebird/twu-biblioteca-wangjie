@@ -16,6 +16,7 @@ public class ConstOfHint {
     public static final String RETURN_BOOK_FAIL_HINT="That is not a valid book to return.";
 
     public static final String RETRUN_MAIN_MENU_HINT="Please input any character to return main menu!";
+    public static final String BYE_HINT="Bye!";
     public static final String ZERO="0";
     public static final String ONE="1";
     public static final String TWO="2";
@@ -26,6 +27,11 @@ public class ConstOfHint {
     public static final String SEVEN="7";
     public static final String EIGHT="8";
     public static final String NINE="9";
+
+    public static final String FORMATE_STRING="%-32d%-32s%-32s%-32s";
+
+    public static final String SPERATOR="=========================================================================================================";
+    public static final String BOOK_LIST_THEAD=String.format("%-32s%-32s%-32s%-32s","Id","Title","Author","PublishDate");
 
 
 

@@ -7,41 +7,50 @@ import static com.twu.biblioteca.entity.ConstOfHint.*;
  */
 public class BibliotecaAppView {
 
-    public void showWelcome() {
+    public static void showWelcome() {
         System.out.println(WECLOME_HINT);
     }
 
-    public void showMainMenu() {
+    public static void showMainMenu() {
         System.out.println(MAIN_MENU_HINT);
     }
 
-    public void showChoiceWrong(){
+    public static void showChoiceWrong(){
         System.out.println(WRONG_CHOICE_HINT);
     }
-    public void showBorrowBookHint(){
+    public static void showBorrowBookHint(){
         System.out.println(BORROW_BOOK_HINT);
     }
-    public void showBorrowBokkSuccessHint(){
+    public static void showBorrowBokkSuccessHint(){
         System.out.println(BORROW_BOOK_SUCCESS_HINT);
     }
-    public void showBorrowBookFailHint(){
+    public static void showBorrowBookFailHint(){
         System.out.println(BORROW_BOOK_FAIL_HINT);
     }
 
 
-    public void showReturnBookHint() {
+    public static void showReturnBookHint() {
         System.out.println(RETURN_BOOK_HINT);
     }
 
-    public void showReturnBookFailHint() {
+    public static void showReturnBookFailHint() {
         System.out.println(RETURN_BOOK_FAIL_HINT);
     }
 
-    public void showReturnBookSuccessHint() {
+    public static void showReturnBookSuccessHint() {
         System.out.println(RETURN_BOOK_SUCCESS_HINT);
     }
-    public void showReturnMainMenuHint() {
+    public static void showReturnMainMenuHint() {
         System.out.println(RETRUN_MAIN_MENU_HINT);
     }
 
+    public static void showSperatorHint(){
+        System.out.println(SPERATOR);
+    }
+    public static void showBookListThead(){
+        System.out.println(BOOK_LIST_THEAD);
+    }
+    public static void showByeHint(){
+        System.out.println(BYE_HINT);
+    }
 }
