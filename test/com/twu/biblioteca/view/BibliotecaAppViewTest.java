@@ -49,7 +49,7 @@ public class BibliotecaAppViewTest {
     }
     @Test
     public void should_view_will_output_the_borrow_book_success_info() throws Exception {
-        bibliotecaAppView.showBorrowBokkSuccessHint();
+        bibliotecaAppView.showBorrowBookSuccessHint();
         assertTrue(systemOut().startsWith(BORROW_BOOK_SUCCESS_HINT));
     }
     @Test

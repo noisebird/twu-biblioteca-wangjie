@@ -46,7 +46,7 @@ public class BookStore {
         while(true){
             BibliotecaAppView.showBorrowBookHint();
             if(changeBookStatus(readInput.read())){
-                BibliotecaAppView.showBorrowBokkSuccessHint();
+                BibliotecaAppView.showBorrowBookSuccessHint();
                 break;
             }else{
                 BibliotecaAppView.showBorrowBookFailHint();
@@ -74,12 +74,12 @@ public class BookStore {
     public void returnBook() {
         status=false;
         while(true){
-            BibliotecaAppView.showReturnBookHint();
+            BibliotecaAppView.showReturnMovieHint();
             if(changeBookStatus(readInput.read())){
-                BibliotecaAppView.showReturnBookSuccessHint();
+                BibliotecaAppView.showReturnMovieSuccessHint();
                 break;
             }else{
-                BibliotecaAppView.showReturnBookFailHint();
+                BibliotecaAppView.showReturnMovieFailHint();
             }
         }
     }
