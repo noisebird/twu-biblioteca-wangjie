@@ -17,17 +17,23 @@ import static org.junit.Assert.assertTrue;
 public class BibliotecaAppViewTest {
 
     private ByteArrayOutputStream outStream=new ByteArrayOutputStream();
+    private  BibliotecaAppView bibliotecaAppView;
     @Before
     public void before(){
         System.setOut(new PrintStream(outStream));
     }
     public String systemOut(){
+        bibliotecaAppView=new BibliotecaAppView();
         return outStream.toString();
     }
     @Test
     public void should_view_will_output_the_welcome_info() throws Exception {
-        BibliotecaAppView bibliotecaAppView=new BibliotecaAppView();
         bibliotecaAppView.showWelcome();
         assertTrue(systemOut().startsWith(WECLOME_HINT));
+    }
+    @Test
+    public void should_view_will_output_the_main_menu_info() throws Exception {
+        bibliotecaAppView.showMainMenu();
+        assertTrue(systemOut().startsWith(MAIN_MENU_HINT));
     }
 }
