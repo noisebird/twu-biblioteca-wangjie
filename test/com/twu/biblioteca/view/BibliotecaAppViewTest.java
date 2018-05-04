@@ -42,5 +42,43 @@ public class BibliotecaAppViewTest {
         bibliotecaAppView.showChoiceWrong();
         assertTrue(systemOut().startsWith(WRONG_CHOICE_HINT));
     }
+    @Test
+    public void should_view_will_output_the_input_borrow_book_info() throws Exception {
+        bibliotecaAppView.showBorrowBookHint();
+        assertTrue(systemOut().startsWith(BORROW_BOOK_HINT));
+    }
+    @Test
+    public void should_view_will_output_the_borrow_book_success_info() throws Exception {
+        bibliotecaAppView.showBorrowBokkSuccessHint();
+        assertTrue(systemOut().startsWith(BORROW_BOOK_SUCCESS_HINT));
+    }
+    @Test
+    public void should_view_will_output_the_borrow_book_fail_info() throws Exception {
+        bibliotecaAppView.showBorrowBookFailHint();
+        assertTrue(systemOut().startsWith(BORROW_BOOK_FAIL_HINT));
+    }
+
+    @Test
+    public void should_view_will_output_the_input_return_book_info() throws Exception {
+        bibliotecaAppView.showReturnBookHint();
+        assertTrue(systemOut().startsWith(RETURN_BOOK_HINT));
+    }
+    @Test
+    public void should_view_will_output_the_return_book_success_info() throws Exception {
+        bibliotecaAppView.showReturnBookSuccessHint();
+        assertTrue(systemOut().startsWith(RETURN_BOOK_SUCCESS_HINT));
+    }
+    @Test
+    public void should_view_will_output_the_return_book_fail_info() throws Exception {
+        bibliotecaAppView.showReturnBookFailHint();
+        assertTrue(systemOut().startsWith(RETURN_BOOK_FAIL_HINT));
+    }
+
+    @Test
+    public void should_view_will_output_the_return_main_menu_info() throws Exception {
+        bibliotecaAppView.showReturnMainMenuHint();
+        assertTrue(systemOut().startsWith(RETRUN_MAIN_MENU_HINT));
+    }
+
 
 }
