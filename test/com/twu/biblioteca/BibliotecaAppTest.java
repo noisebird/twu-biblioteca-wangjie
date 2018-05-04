@@ -140,4 +140,11 @@ public class BibliotecaAppTest {
         long count = bibliotecaApp.bookStore.getAviableBookList().stream().filter(book -> book.getState()).count();
         assertTrue(5 == count);
     }
+    @Test
+    public void should_input_value_equals_4_is_validate() throws Exception {
+        when(readInput.read()).thenReturn("4");
+        bibliotecaApp.enter();
+        System.out.println(systemOut());
+        assertTrue(systemOut().endsWith("Bye!\n\n"));
+    }
 }

@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 public class BookStore {
     private List<Book> list;
     private ReadInput readInput;
+    private boolean status=true;
 
     public BookStore(ReadInput readInput) {
         this.readInput=readInput;
@@ -41,6 +42,7 @@ public class BookStore {
     }
 
     public void borrowBook(){
+        status=true;
         while(true){
             BibliotecaAppView.showBorrowBookHint();
             if(changeBookStatus(readInput.read())){
@@ -65,7 +67,20 @@ public class BookStore {
     }
 
     private boolean isInputValidate(String input){
-        return list.stream().anyMatch(book->String.valueOf(book.getId()).equals(input)&&book.getState());
+        return list.stream().anyMatch(book->String.valueOf(book.getId()).equals(input)&&book.getState()==status);
 
+    }
+
+    public void returnBook() {
+        status=false;
+        while(true){
+            BibliotecaAppView.showReturnBookHint();
+            if(changeBookStatus(readInput.read())){
+                BibliotecaAppView.showReturnBookSuccessHint();
+                break;
+            }else{
+                BibliotecaAppView.showReturnBookFailHint();
+            }
+        }
     }
 }

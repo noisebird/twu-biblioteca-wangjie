@@ -35,6 +35,7 @@ public class BibliotecaApp {
                 bookStore.borrowBook();
                 return true;
             case THREE:
+                bookStore.returnBook();
                 return true;
             case FOURE:
                 BibliotecaAppView.showByeHint();
