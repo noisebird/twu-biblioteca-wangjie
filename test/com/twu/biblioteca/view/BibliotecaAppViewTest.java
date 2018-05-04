@@ -20,10 +20,11 @@ public class BibliotecaAppViewTest {
     private  BibliotecaAppView bibliotecaAppView;
     @Before
     public void before(){
+        bibliotecaAppView=new BibliotecaAppView();
         System.setOut(new PrintStream(outStream));
     }
     public String systemOut(){
-        bibliotecaAppView=new BibliotecaAppView();
+
         return outStream.toString();
     }
     @Test
@@ -36,4 +37,10 @@ public class BibliotecaAppViewTest {
         bibliotecaAppView.showMainMenu();
         assertTrue(systemOut().startsWith(MAIN_MENU_HINT));
     }
+    @Test
+    public void should_view_will_output_the_choice_wrong_info() throws Exception {
+        bibliotecaAppView.showChoiceWrong();
+        assertTrue(systemOut().startsWith(WRONG_CHOICE_HINT));
+    }
+
 }

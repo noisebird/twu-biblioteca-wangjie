@@ -14,4 +14,8 @@ public class BibliotecaAppView {
     public void showMainMenu() {
         System.out.println(MAIN_MENU_HINT);
     }
+
+    public void showChoiceWrong(){
+        System.out.println(WRONG_CHOICE_HINT);
+    }
 }
