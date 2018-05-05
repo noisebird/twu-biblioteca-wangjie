@@ -1,6 +1,4 @@
 package com.twu.biblioteca.command;
-
-import com.twu.biblioteca.validation.InputValidate;
 import com.twu.biblioteca.view.BibliotecaAppView;
 
 import java.util.Scanner;
@@ -10,7 +8,6 @@ import java.util.Scanner;
  */
 public class ReadInput {
     private Scanner scanner = new Scanner(System.in);
-    private InputValidate inputValidate = new InputValidate();
     private BibliotecaAppView bibliotecaAppView = new BibliotecaAppView();
 
     public String read() {

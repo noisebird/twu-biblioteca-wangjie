@@ -25,8 +25,9 @@ public class ConstOfHint {
     public static final String RETURN_MOVIE_HINT="Please input the id of the returning book:";
     public static final String RETURN_MOVIE_SUCCESS_HINT="Thank you for returning the book.";
     public static final String RETURN_MOVIE_FAIL_HINT="That is not a valid book to return.";
+    public static final String SPERATOR="=========================================================================================================";
 
-    public static final String RETRUN_MAIN_MENU_HINT="Please input any character to return main menu!";
+    public static final String RETRUN_MAIN_MENU_HINT=SPERATOR+"\n"+"Please input any character to return main menu!";
     public static final String BYE_HINT="Bye!";
     public static final String ZERO="0";
     public static final String ONE="1";
@@ -39,14 +40,13 @@ public class ConstOfHint {
 
     public static final String FORMATE_STRING="%-32d%-32s%-32s%-32s";
 
-    public static final String SPERATOR="=========================================================================================================";
-    public static final String BOOK_LIST_HEAD=String.format("%-32s%-32s%-32s%-32s","Id","Title","Author","PublishDate");
+    public static final String BOOK_LIST_HEAD=SPERATOR+"\n"+String.format("%-32s%-32s%-32s%-32s","Id","Title","Author","PublishDate")+"\n"+SPERATOR;
 
     public static final String MOVIE_LIST_HEAD=String.format("%-25s%-25s%-25s%-25s%-25s","Id","Name", "Year","Director","rating");
 
     public static final String LOGIN_MENU="1.Login in\n2.Return to main menu\n" +
             "Please input your choice（1～2)";
-    public static final String HAS_LOGIN_MENU="1.User Information\n2.Press any key to return main menu\n" +
+    public static final String HAS_LOGIN_MENU="1.User Information\n2.Return to main menu\n" +
             "Please input your choice（1～2)";
     public static final String USERNAME_HINT="Please input your username（xxx-xxxx）:\n";
     public static final String PASSWORD_HINT="Please input your password:\n";

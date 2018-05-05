@@ -32,11 +32,8 @@ public class BookStore {
       return list.stream().filter(book->book.getState()).collect(Collectors.toList());
     }
     public void showBookList() {
-        BibliotecaAppView.showSperatorHint();
         BibliotecaAppView.showBookListThead();
-        BibliotecaAppView.showSperatorHint();
         list.stream().filter(book->book.getState()).map(Book::toString).forEach(item-> System.out.println(item));
-        BibliotecaAppView.showSperatorHint();
         BibliotecaAppView.showReturnMainMenuHint();
         readInput.read();
     }
@@ -70,7 +67,6 @@ public class BookStore {
         return list.stream().anyMatch(book->String.valueOf(book.getId()).equals(input)&&book.getState()==status);
 
     }
-
     public void returnBook() {
         status=false;
         while(true){

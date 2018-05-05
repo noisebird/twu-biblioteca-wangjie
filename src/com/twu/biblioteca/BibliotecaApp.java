@@ -35,7 +35,7 @@ public class BibliotecaApp {
     public boolean init() {
         BibliotecaAppView.showMainMenu();
         String choice = readInput.read();
-        if (userRepository.getUser() == null&&!(choice.equals("0")||choice.equals("7"))) {
+        if (getLoginUser() == null&&!(choice.equals(ZERO)||choice.equals(SEVEN))) {
             BibliotecaAppView.showLoginInFirstHint();
             return true;
         }
@@ -74,15 +74,14 @@ public class BibliotecaApp {
     }
 
     public boolean loginInit() {
-        User user = userRepository.getUser();
-        if (user == null) {
+        if (getLoginUser() == null) {
             BibliotecaAppView.showLoginMenu();
         } else {
             BibliotecaAppView.showHasLoginFailHint();
         }
         switch (readInput.read()) {
             case ONE:
-                if (user == null) {
+                if (getLoginUser() == null) {
                     userRepository.login();
                 } else {
                     userRepository.showAccountInfo();
@@ -94,6 +93,10 @@ public class BibliotecaApp {
                 BibliotecaAppView.showChoiceWrong();
                 return true;
         }
+    }
+
+    public User getLoginUser(){
+        return userRepository.getUser();
     }
 
 }
