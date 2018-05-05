@@ -99,6 +99,18 @@ public class BibliotecaAppView {
     public static void showPasswordHint() {
         System.out.println(PASSWORD_HINT);
     }
+    public static void showLoginSuccessHint(){
+        System.out.println(LOGIN_SUCCESS);
+    }
+    public static void showLoginFailHint(){
+        System.out.println(LOGIN_FAIL);
+    }
+    public static void showHasLoginFailHint(){
+        System.out.println(HAS_LOGIN_MENU);
+    }
+    public static void showLoginInFirstHint(){
+        System.out.println(LOGIN_IN_FIRST_HINT);
+    }
 
 
 }

@@ -4,7 +4,9 @@ import com.twu.biblioteca.BibliotecaApp;
 import com.twu.biblioteca.command.ReadInput;
 import com.twu.biblioteca.entity.User;
 import com.twu.biblioteca.view.BibliotecaAppView;
+import org.mockito.internal.matchers.Null;
 
+import javax.jws.soap.SOAPBinding;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,7 +17,7 @@ import java.util.stream.Collectors;
 public class UserRepository {
     private List<User> list=new ArrayList<User>();
     private ReadInput readInput;
-    private boolean isLogin=false;
+    private User user;
 
     public UserRepository(ReadInput readInput) {
         this.readInput=readInput;
@@ -24,19 +26,32 @@ public class UserRepository {
         list.add(new User("111-1113", "123456", "root", "5626398173@qq.com", "13018002800"));
     }
 
-    public void login(){
+    public User getUser() {
+        return user;
+    }
 
+    public void login(){
         BibliotecaAppView.showUsernameHint();
         String username=readInput.read();
         BibliotecaAppView.showPasswordHint();
         String password=readInput.read();
-        List<User> users=loginValidate(username,password);
-        if(users.size()==0){
+        user=loginValidate(username,password);
+        if(user== null){
             login();
-            System.out.println();
+            BibliotecaAppView.showLoginFailHint();
+        }else{
+            BibliotecaAppView.showLoginSuccessHint();
         }
+
     }
-    public List<User> loginValidate(String username,String password){
-        return  list.stream().filter(user->user.getLibraryNo().equals(username)&&user.getPassword().equals(password)).collect(Collectors.toList());
+    public void showAccountInfo(){
+        BibliotecaAppView.showSperatorHint();
+        System.out.println(user.toString());
+        BibliotecaAppView.showSperatorHint();
+    }
+
+    public User loginValidate(String username,String password){
+        return  list.stream().filter(user->user.getLibraryNo().equals(username)&&user.getPassword().equals(password)).count()==0?null:
+                list.stream().filter(user->user.getLibraryNo().equals(username)&&user.getPassword().equals(password)).findFirst().get();
     }
 }

@@ -5,20 +5,23 @@ import com.twu.biblioteca.command.ReadInput;
 
 import static com.twu.biblioteca.entity.ConstOfHint.*;
 
+import com.twu.biblioteca.entity.User;
 import com.twu.biblioteca.service.BookStore;
 import com.twu.biblioteca.service.MovieStore;
-import com.twu.biblioteca.validation.InputValidate;
+import com.twu.biblioteca.service.UserRepository;
 import com.twu.biblioteca.view.BibliotecaAppView;
 
 public class BibliotecaApp {
     private ReadInput readInput;
     protected BookStore bookStore;
     protected MovieStore movieStore;
+    protected UserRepository userRepository;
 
     public BibliotecaApp(ReadInput readInput) {
         this.readInput = readInput;
-        bookStore=new BookStore(readInput);
-        movieStore=new MovieStore(readInput);
+        bookStore = new BookStore(readInput);
+        movieStore = new MovieStore(readInput);
+        userRepository = new UserRepository(readInput);
     }
 
 
@@ -28,11 +31,19 @@ public class BibliotecaApp {
 
         }
     }
+
     public boolean init() {
         BibliotecaAppView.showMainMenu();
-        switch (readInput.read()) {
+        String choice = readInput.read();
+        if (userRepository.getUser() == null&&!(choice.equals("0")||choice.equals("7"))) {
+            BibliotecaAppView.showLoginInFirstHint();
+            return true;
+        }
+        switch (choice) {
             case ZERO:
-                while(loginInit()){};
+                while (loginInit()) {
+                }
+                ;
                 return true;
             case ONE:
                 bookStore.showBookList();
@@ -41,6 +52,7 @@ public class BibliotecaApp {
                 bookStore.borrowBook();
                 return true;
             case THREE:
+
                 bookStore.returnBook();
                 return true;
             case FOUR:
@@ -60,10 +72,21 @@ public class BibliotecaApp {
                 return true;
         }
     }
-    public boolean loginInit(){
-        BibliotecaAppView.showLoginMenu();
-        switch (readInput.read()){
+
+    public boolean loginInit() {
+        User user = userRepository.getUser();
+        if (user == null) {
+            BibliotecaAppView.showLoginMenu();
+        } else {
+            BibliotecaAppView.showHasLoginFailHint();
+        }
+        switch (readInput.read()) {
             case ONE:
+                if (user == null) {
+                    userRepository.login();
+                } else {
+                    userRepository.showAccountInfo();
+                }
                 return true;
             case TWO:
                 return false;

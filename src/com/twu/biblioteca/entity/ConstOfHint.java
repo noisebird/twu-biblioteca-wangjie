@@ -44,13 +44,16 @@ public class ConstOfHint {
 
     public static final String MOVIE_LIST_HEAD=String.format("%-25s%-25s%-25s%-25s%-25s","Id","Name", "Year","Director","rating");
 
-    public static final String LOGIN_MENU="1.Login in\n2.Press any key to return main menu\n" +
+    public static final String LOGIN_MENU="1.Login in\n2.Return to main menu\n" +
             "Please input your choice（1～2)";
-    public static final String USERNAME_HINT="Please input your username:\n";
+    public static final String HAS_LOGIN_MENU="1.User Information\n2.Press any key to return main menu\n" +
+            "Please input your choice（1～2)";
+    public static final String USERNAME_HINT="Please input your username（xxx-xxxx）:\n";
     public static final String PASSWORD_HINT="Please input your password:\n";
     public static final String LOGIN_SUCCESS="login successfully";
     public static final String LOGIN_FAIL="Your username or password has an error!Please input your username and password again!";
 
+    public static final String LOGIN_IN_FIRST_HINT="please login in the system!";
 
 
 }
