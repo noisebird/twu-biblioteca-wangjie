@@ -7,9 +7,6 @@ import static com.twu.biblioteca.entity.ConstOfHint.*;
 
 import com.twu.biblioteca.controller.BibliotecaController;
 import com.twu.biblioteca.entity.User;
-import com.twu.biblioteca.service.BookStore;
-import com.twu.biblioteca.service.MovieStore;
-import com.twu.biblioteca.service.UserRepository;
 import com.twu.biblioteca.view.BibliotecaAppView;
 
 public class BibliotecaApp {
@@ -43,23 +40,23 @@ public class BibliotecaApp {
                 ;
                 return true;
             case ONE:
-                bibliotecaController.showBookList();
+                bibliotecaController.showDetailList("book",BOOK_LIST_HEAD,RETRUN_MAIN_MENU_HINT);
                 return true;
             case TWO:
-                bibliotecaController.borrowBook();
+                bibliotecaController.borrow("book",BORROW_BOOK_HINT,BORROW_BOOK_SUCCESS_HINT,BORROW_BOOK_FAIL_HINT);
                 return true;
             case THREE:
 
-                bibliotecaController.returnBook();
+                bibliotecaController.returnGoods("book",RETURN_BOOK_HINT,RETURN_BOOK_SUCCESS_HINT,RETURN_BOOK_FAIL_HINT);
                 return true;
             case FOUR:
-                bibliotecaController.showMovieList();
+                bibliotecaController.showDetailList("movie",MOVIE_LIST_HEAD,RETRUN_MAIN_MENU_HINT);
                 return true;
             case FIVE:
-                bibliotecaController.borrowMovie();
+                bibliotecaController.borrow("movie",BORROW_MOVIE_HINT,BORROW_MOVIE_SUCCESS_HINT,BORROW_MOVIE_FAIL_HINT);
                 return true;
             case SIX:
-                bibliotecaController.returnMovie();
+                bibliotecaController.returnGoods("movie",RETURN_MOVIE_HINT,RETURN_MOVIE_SUCCESS_HINT,RETURN_MOVIE_FAIL_HINT);
                 return true;
             case SEVEN:
                 BibliotecaAppView.showByeHint();
