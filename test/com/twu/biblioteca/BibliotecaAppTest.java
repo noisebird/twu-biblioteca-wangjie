@@ -187,14 +187,14 @@ public class BibliotecaAppTest {
     public void should_main_menu_input_0_will_ouput_login_menu() throws Exception {
         when(readInput.read()).thenReturn(ZERO).thenReturn(TWO).thenReturn(SEVEN);
         bibliotecaApp.enter();
-        System.out.println(systemOut().contains(LOGIN_MENU));
+       assertTrue(systemOut().contains(LOGIN_MENU));
     }
 
     @Test
     public void should_login_menu_input_2_will_return_main_menu() {
         when(readInput.read()).thenReturn(ZERO).thenReturn(TWO).thenReturn(SEVEN);
         bibliotecaApp.enter();
-        System.out.println(systemOut().contains(MAIN_MENU_HINT));
+        assertTrue(systemOut().contains(MAIN_MENU_HINT));
     }
 
     @Test
@@ -205,7 +205,7 @@ public class BibliotecaAppTest {
                 .thenReturn("123456").
                 thenReturn(TWO).thenReturn(SEVEN);
         bibliotecaApp.enter();
-        System.out.println(systemOut().contains(MAIN_MENU_HINT));
+        assertTrue(systemOut().contains(MAIN_MENU_HINT));
     }
 
     @Test
@@ -216,7 +216,7 @@ public class BibliotecaAppTest {
                 .thenReturn("123456").
                 thenReturn(TWO).thenReturn(SEVEN);
         bibliotecaApp.enter();
-        System.out.println(systemOut().contains(LOGIN_SUCCESS));
+      assertTrue(systemOut().contains(LOGIN_SUCCESS));
     }
     @Test
     public void should_login_menu_input_1_will_return_output_login_fail() {
@@ -228,7 +228,7 @@ public class BibliotecaAppTest {
                 .thenReturn("123456").
                 thenReturn(TWO).thenReturn(SEVEN);
         bibliotecaApp.enter();
-        System.out.println(systemOut().contains(LOGIN_FAIL));
+       assertTrue(systemOut().contains(LOGIN_FAIL));
     }
     @Test
     public void should_login_menu_input_1_will_return_output_has_loogin_menu() {
@@ -238,14 +238,41 @@ public class BibliotecaAppTest {
                 .thenReturn("123456").
                 thenReturn(TWO).thenReturn(SEVEN);
         bibliotecaApp.enter();
-        System.out.println(systemOut().contains(HAS_LOGIN_MENU));
+        assertTrue(systemOut().contains(HAS_LOGIN_MENU));
+    }
+
+    @Test
+    public void should_not_login_in_then_input_1_will_occur_hint_login_in_first() {
+        when(readInput.read()).thenReturn(ONE).thenReturn(SEVEN);
+        bibliotecaApp.enter();
+        assertTrue(systemOut().endsWith(LOGIN_IN_FIRST_HINT+"\n"+MAIN_MENU_HINT+"\n"+BYE_HINT+"\n"));
     }
     @Test
-    public void should_not_login_in_then_use_other_funtion_will_occur_need_to_login_in_info() {
-        when(readInput.read()).thenReturn(ONE).thenReturn(ZERO)
-                .thenReturn(ONE).thenReturn("111-1111").thenReturn("123456").thenReturn(TWO)
-        .thenReturn(SEVEN);
+    public void should_not_login_in_then_input_7_will_exit_system() {
+        when(readInput.read()).thenReturn(SEVEN);
         bibliotecaApp.enter();
-        System.out.println(systemOut().contains(LOGIN_IN_FIRST_HINT));
+        assertTrue(systemOut().endsWith(BYE_HINT+"\n"));
+    }
+    @Test
+    public void should_not_login_in_then_input_0_will_enter_login_menu() {
+        when(readInput.read()).thenReturn(ZERO).thenReturn(TWO)
+                .thenReturn(SEVEN);
+        bibliotecaApp.enter();
+        assertTrue(systemOut().contains(LOGIN_MENU));
+    }
+
+    @Test
+    public void when_login_in_system_then_other_function_can_be_use() throws Exception {
+        List<Movie> list = new ArrayList<Movie>();
+        list.add(new Movie(1001, "The Avengers", "Joss Whedon", "2012", "1", true));
+        list.add(new Movie(1002, "Captain America", "Joe Johnston", "2011", "2", true));
+        list.add(new Movie(1003, "Iron Man", "Jon Favreau", "2013", "8", true));
+        list.add(new Movie(1004, "Wolverine", "Hugh Jackman", "2008-1", "8", false));
+        String expectResult = list.stream().filter(item -> item.getState()).map(Movie::toString).collect(Collectors.joining("\n"));
+        when(readInput.read()).thenReturn(ZERO).thenReturn(ONE).thenReturn("111-1111")
+                .thenReturn("123456").thenReturn(TWO).thenReturn(FOUR).thenReturn(ONE).thenReturn(SEVEN);
+        bibliotecaApp.enter();
+        assertTrue(systemOut().contains( expectResult));
+
     }
 }
