@@ -5,6 +5,7 @@ import com.twu.biblioteca.command.ReadInput;
 
 import static com.twu.biblioteca.entity.ConstOfHint.*;
 
+import com.twu.biblioteca.controller.BibliotecaController;
 import com.twu.biblioteca.entity.User;
 import com.twu.biblioteca.service.BookStore;
 import com.twu.biblioteca.service.MovieStore;
@@ -13,15 +14,11 @@ import com.twu.biblioteca.view.BibliotecaAppView;
 
 public class BibliotecaApp {
     private ReadInput readInput;
-    protected BookStore bookStore;
-    protected MovieStore movieStore;
-    protected UserRepository userRepository;
+    protected BibliotecaController bibliotecaController;
 
     public BibliotecaApp(ReadInput readInput) {
         this.readInput = readInput;
-        bookStore = new BookStore(readInput);
-        movieStore = new MovieStore(readInput);
-        userRepository = new UserRepository(readInput);
+        bibliotecaController=new BibliotecaController(readInput);
     }
 
 
@@ -46,23 +43,23 @@ public class BibliotecaApp {
                 ;
                 return true;
             case ONE:
-                bookStore.showBookList();
+                bibliotecaController.showBookList();
                 return true;
             case TWO:
-                bookStore.borrowBook();
+                bibliotecaController.borrowBook();
                 return true;
             case THREE:
 
-                bookStore.returnBook();
+                bibliotecaController.returnBook();
                 return true;
             case FOUR:
-                movieStore.showMovieList();
+                bibliotecaController.showMovieList();
                 return true;
             case FIVE:
-                movieStore.borrowMovie();
+                bibliotecaController.borrowMovie();
                 return true;
             case SIX:
-                movieStore.returnMovie();
+                bibliotecaController.returnMovie();
                 return true;
             case SEVEN:
                 BibliotecaAppView.showByeHint();
@@ -82,9 +79,9 @@ public class BibliotecaApp {
         switch (readInput.read()) {
             case ONE:
                 if (getLoginUser() == null) {
-                    userRepository.login();
+                    bibliotecaController.login();
                 } else {
-                    userRepository.showAccountInfo();
+                    bibliotecaController.showAccountInfo();
                 }
                 return true;
             case TWO:
@@ -96,7 +93,7 @@ public class BibliotecaApp {
     }
 
     public User getLoginUser(){
-        return userRepository.getUser();
+        return bibliotecaController.getUser();
     }
 
 }

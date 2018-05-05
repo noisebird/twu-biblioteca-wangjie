@@ -117,7 +117,7 @@ public class BibliotecaAppTest {
         when(readInput.read()).thenReturn(ZERO).thenReturn(ONE).thenReturn("111-1111").
                 thenReturn("123456").thenReturn(TWO).thenReturn(TWO).thenReturn("1001").thenReturn(SEVEN);
         bibliotecaApp.enter();
-        long count = bibliotecaApp.bookStore.getAviableBookList().stream().filter(book -> book.getState()).count();
+        long count = bibliotecaApp.bibliotecaController.bookStore.getAviableList().stream().filter(book -> book.getState()).count();
         assertTrue(3 == count);
     }
 
@@ -158,7 +158,7 @@ public class BibliotecaAppTest {
         when(readInput.read()).thenReturn(ZERO).thenReturn(ONE).thenReturn("111-1111").
                 thenReturn("123456").thenReturn(TWO).thenReturn(THREE).thenReturn("1005").thenReturn(SEVEN);
         bibliotecaApp.enter();
-        long count = bibliotecaApp.bookStore.getAviableBookList().stream().filter(book -> book.getState()).count();
+        long count = bibliotecaApp.bibliotecaController.bookStore.getAviableList().stream().filter(book -> book.getState()).count();
         assertTrue(5 == count);
     }
 
@@ -188,7 +188,7 @@ public class BibliotecaAppTest {
         when(readInput.read()).thenReturn(ZERO).thenReturn(ONE).thenReturn("111-1111").
                 thenReturn("123456").thenReturn(TWO).thenReturn(FOUR).thenReturn("a").thenReturn(SEVEN);
         bibliotecaApp.enter();
-        assertTrue(systemOut().contains(SPERATOR + "\n" + MOVIE_LIST_HEAD + "\n" + SPERATOR + "\n" + expectResult + "\n" + SPERATOR + "\n" + RETRUN_MAIN_MENU_HINT + "\n" + MAIN_MENU_HINT + "\n" + BYE_HINT + "\n"));
+        assertTrue(systemOut().contains(MOVIE_LIST_HEAD + "\n"  + expectResult + "\n" +RETRUN_MAIN_MENU_HINT + "\n" + MAIN_MENU_HINT + "\n" + BYE_HINT + "\n"));
     }
 
     @Test

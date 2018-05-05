@@ -42,7 +42,7 @@ public class ConstOfHint {
 
     public static final String BOOK_LIST_HEAD=SPERATOR+"\n"+String.format("%-32s%-32s%-32s%-32s","Id","Title","Author","PublishDate")+"\n"+SPERATOR;
 
-    public static final String MOVIE_LIST_HEAD=String.format("%-25s%-25s%-25s%-25s%-25s","Id","Name", "Year","Director","rating");
+    public static final String MOVIE_LIST_HEAD=SPERATOR+"\n"+String.format("%-25s%-25s%-25s%-25s%-25s","Id","Name", "Year","Director","rating")+"\n"+SPERATOR;
 
     public static final String LOGIN_MENU="1.Login in\n2.Return to main menu\n" +
             "Please input your choice（1～2)";
