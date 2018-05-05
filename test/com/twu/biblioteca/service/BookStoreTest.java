@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 
@@ -38,8 +39,35 @@ public class BookStoreTest {
 
 
     @Test
-    public void should_book_status_is_0_not_occur_book_list() throws Exception {
+    public void should_book_status_is_false_not_occur_book_list() throws Exception {
         assertTrue(4== bookStore.getAviableList().size());
     }
 
+    @Test
+    public void should_change_book_status_to_false_then_book_list_will_reduce_1() throws Exception {
+        bookStore.changeStatus("1001",true);
+        assertTrue(3==bookStore.getAviableList().size());
+    }
+    @Test
+    public void should_change_book_status_to_true_then_book_list_will_add_1() throws Exception {
+        bookStore.changeStatus("1005",false);
+        assertTrue(5==bookStore.getAviableList().size());
+    }
+
+    @Test
+    public void should_borrorw_book_that_the_book_status_is_false_will_return_false() throws Exception {
+        assertFalse(bookStore.isInputValidate("1005",true));
+    }
+    @Test
+    public void should_return_book_that_the_book_status_is_false_will_return_true() throws Exception {
+        assertTrue(bookStore.isInputValidate("1005",false));
+    }
+    @Test
+    public void should_borrorw_book_that_the_book_status_is_true_will_return_true() throws Exception {
+        assertTrue(bookStore.isInputValidate("1001",true));
+    }
+    @Test
+    public void should_return_book_that_the_book_status_is_true_will_return_true() throws Exception {
+        assertFalse(bookStore.isInputValidate("1001",false));
+    }
 }
